@@ -16,7 +16,7 @@ end
 
 guard :process, name: 'gulp', command: %w[gulp watch] do
   watch(%r{^gulpfile\.js$})
-  watch(%r{^config/webpack\.js$})
+  watch(%r{^webpack\.config\.js$})
 end
 
 guard :rspec, cmd: 'bin/rspec' do

@@ -5,7 +5,7 @@ const gulp = require('gulp'),
   plumber = require('gulp-plumber'),
   webpack = require('webpack-stream');
 
-let config = require('./config/webpack');
+let config = require('./webpack.config');
 
 gulp.task('lint', function() {
   return gulp.src(['app/frontends/**/*.js'])

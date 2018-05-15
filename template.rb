@@ -146,7 +146,7 @@ after_bundle do
   # Setup yarn
   template 'package.json'
   template 'gulpfile.js'
-  copy_file 'config/webpack.js'
+  copy_file 'webpack.config.js'
   template '.eslintrc.js'
   run 'yarn install'
 
