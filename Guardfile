@@ -14,8 +14,7 @@ guard :rails, host: '0.0.0.0' do
   ignore(%r{config/routes\.rb})
 end
 
-guard :process, name: 'gulp', command: %w[gulp watch] do
-  watch(%r{^gulpfile\.js$})
+guard :process, name: 'webpack', command: %w[webpack --watch] do
   watch(%r{^webpack\.config\.js$})
 end
 
