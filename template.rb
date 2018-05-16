@@ -163,8 +163,7 @@ after_bundle do
   run 'sed -i "" -e "/^$/d" Gemfile'
 
   # Setup yarn
-  template 'package.json'
-  template 'gulpfile.js'
+  template 'package.json', force: true
   copy_file 'webpack.config.js'
   copy_file 'config/frontend.js'
   template '.eslintrc.js'
