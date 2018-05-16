@@ -37,7 +37,7 @@ gem_group :test do
   gem 'simplecov', require: false
 end
 
-initializer 'assets,rb', <<-CODE
+initializer 'assets.rb', <<-CODE, force: true
 # Be sure to restart your server when you modify this file.
 
 # Version of your assets, change this if you want to expire all your assets.
@@ -120,7 +120,7 @@ copy_file 'bin/setup', force: true
 template 'README.md.erb', 'README.md', force: true
 
 after_bundle do
-  run 'bundle binstub bundler', force: true
+  run 'bundle binstub bundler --force'
 
   # Setup direnv
   template '.envrc.tpl', '.envrc'
