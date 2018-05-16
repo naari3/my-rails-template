@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # vim: ft=ruby
 clearing :off
 interactor :off
@@ -19,7 +21,7 @@ guard :process, name: 'webpack', command: %w[webpack --watch] do
 end
 
 guard :rspec, cmd: 'bin/rspec' do
-  require "guard/rspec/dsl"
+  require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 
   # Feel free to open issues for suggestions and improvements
@@ -35,7 +37,7 @@ guard :rspec, cmd: 'bin/rspec' do
   dsl.watch_spec_files_for(ruby.lib_files)
 
   # Rails files
-  rails = dsl.rails(view_extensions: %w(erb haml slim))
+  rails = dsl.rails(view_extensions: %w[erb haml slim])
   dsl.watch_spec_files_for(rails.app_files)
   dsl.watch_spec_files_for(rails.views)
 
@@ -59,6 +61,6 @@ guard :rspec, cmd: 'bin/rspec' do
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$}) do |m|
-    Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
+    Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance'
   end
 end

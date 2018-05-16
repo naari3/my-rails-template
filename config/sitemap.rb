@@ -1,4 +1,6 @@
-schema = Rails.application.config.force_ssl ? "https" : "http"
+# frozen_string_literal: true
+
+schema = Rails.application.config.force_ssl ? 'https' : 'http'
 host = Rails.application.config.action_controller.default_url_options[:host]
 SitemapGenerator::Sitemap.default_host = "#{schema}://#{host}"
 

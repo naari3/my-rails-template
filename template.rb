@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 def source_paths
-  [File.expand_path(File.dirname(__FILE__))]
+  [__dir__]
 end
 
 gem 'locale_kit'
@@ -37,78 +39,78 @@ gem_group :test do
   gem 'simplecov', require: false
 end
 
-initializer 'assets.rb', <<-CODE, force: true
-# Be sure to restart your server when you modify this file.
+initializer 'assets.rb', <<~CODE
+  # Be sure to restart your server when you modify this file.
 
-# Version of your assets, change this if you want to expire all your assets.
-Rails.application.config.assets.version = '1.0'
+  # Version of your assets, change this if you want to expire all your assets.
+  Rails.application.config.assets.version = '1.0'
 
-# Add additional assets to the asset load path.
-# Rails.application.config.assets.paths << Emoji.images_path
-# Add Yarn node_modules folder to the asset load path.
-# Rails.application.config.assets.paths << Rails.root.join('node_modules')
+  # Add additional assets to the asset load path.
+  # Rails.application.config.assets.paths << Emoji.images_path
+  # Add Yarn node_modules folder to the asset load path.
+  # Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
-# Precompile additional assets.
-# application.js, application.css, and all non-JS/CSS in the app/assets
-# folder are already added.
-# Rails.application.config.assets.precompile += %w( admin.js admin.css )
+  # Precompile additional assets.
+  # application.js, application.css, and all non-JS/CSS in the app/assets
+  # folder are already added.
+  # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 CODE
 
-initializer 'i18n.rb', <<-CODE
-Rails.application.config.tap do |config|
-  config.i18n.available_locales = %i[ja en]
-  config.i18n.fallbacks = %i[ja en]
-  config.i18n.default_locale = :ja
-end
+initializer 'i18n.rb', <<~CODE
+  Rails.application.config.tap do |config|
+    config.i18n.available_locales = %i[ja en]
+    config.i18n.fallbacks = %i[ja en]
+    config.i18n.default_locale = :ja
+  end
 CODE
 
-initializer 'meta_tags.rb', <<-CODE
-MetaTags.configure do |config|
-  config.title_limit = 70
-  config.description_limit = 160
-  config.keywords_limit = 255
-  config.keywords_separator = ', '
-end
+initializer 'meta_tags.rb', <<~CODE
+  MetaTags.configure do |config|
+    config.title_limit = 70
+    config.description_limit = 160
+    config.keywords_limit = 255
+    config.keywords_separator = ', '
+  end
 CODE
 
-initializer 'premailer.rb', <<-CODE
-Premailer::Rails.config = Premailer::Rails.config.merge(
-  line_length: 65,
-  remove_ids: false,
-  remove_classes: Rails.env.development?,
-  remove_comments: Rails.env.development?,
-  preserve_styles: Rails.env.development?,
-  adapter: :nokogiri
-)
+initializer 'premailer.rb', <<~CODE
+  Premailer::Rails.config = Premailer::Rails.config.merge(
+    line_length: 65,
+    remove_ids: false,
+    remove_classes: Rails.env.development?,
+    remove_comments: Rails.env.development?,
+    preserve_styles: Rails.env.development?,
+    adapter: :nokogiri
+  )
 CODE
 
-initializer 'webpack.rb', <<-CODE
-# frozen_string_literal: true
-#
-Rails.application.config.assets.precompile << %r{(^[^_\/]|\/[^_])[^\/]*(\.js|\.css)$}
+initializer 'webpack.rb', <<~CODE
+  # frozen_string_literal: true
+
+  Rails.application.config.assets.precompile << %r{(^[^_\/]|\/[^_])[^\/]*(\.js|\.css)$}
 CODE
 
-application <<-CODE
-config.generators do |generator|
-  generator.helper false
-  generator.javascripts false
-  generator.stylesheets false
-  generator.template_engine :slim
-end
+application <<~CODE
+  config.generators do |generator|
+    generator.helper false
+    generator.javascripts false
+    generator.stylesheets false
+    generator.template_engine :slim
+  end
 CODE
 
-environment <<-CODE, env: 'development'
-config.action_mailer.delivery_method = :letter_opener
-config.action_mailer.default_url_options = { host: 'localhost:3000' }
-config.action_controller.asset_host = 'http://localhost:3000'
+environment <<~CODE, env: 'development'
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_controller.asset_host = 'http://localhost:3000'
 CODE
 
-append_to_file '.gitignore', <<-CODE
-/node_modules
-.DS_Store
-/coverage
-/vendor/bundle
-!.envrc
+append_to_file '.gitignore', <<~CODE
+  /node_modules
+  .DS_Store
+  /coverage
+  /vendor/bundle
+  !.envrc
 CODE
 
 # Fix runtime version
