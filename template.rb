@@ -12,6 +12,7 @@ gem 'meta-tags'
 gem 'sitemap_generator'
 gem 'canonical-rails'
 gem 'premailer-rails'
+gem 'ridgepoler-rails'
 
 gem_group :development do
   gem 'parser', "~> #{RUBY_VERSION}.x", require: false
@@ -150,6 +151,9 @@ after_bundle do
 
   # Setup canonical
   generate 'canonical_rails:install'
+
+  # Setup ridgepole
+  generate 'ridgepole:install'
 
   # Setup rails
   copy_file 'app/helpers/application_helper.rb', force: true
