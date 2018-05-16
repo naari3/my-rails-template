@@ -120,6 +120,8 @@ copy_file 'bin/setup', force: true
 template 'README.md.erb', 'README.md', force: true
 
 after_bundle do
+  run 'bundle binstub bundler', force: true
+
   # Setup direnv
   template '.envrc.tpl', '.envrc'
   run 'direnv allow'
