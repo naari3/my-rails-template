@@ -37,7 +37,7 @@ gem_group :development, :test do
 end
 
 gem_group :test do
-  gem 'database_cleaner'
+  gem 'database_rewinder'
   gem 'ffaker'
   gem 'rspec-power_assert'
   gem 'simplecov', require: false
@@ -146,7 +146,7 @@ after_bundle do
   copy_file 'spec/spec_helper.rb', force: true
   copy_file 'spec/rails_helper.rb', force: true
   copy_file 'spec/support/factory_bot.rb'
-  copy_file 'spec/support/database_cleaner.rb'
+  copy_file 'spec/support/database_rewinder.rb'
 
   # for coverage
   environment 'config.public_file_server.enabled = false', env: :test
