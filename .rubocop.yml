@@ -2,7 +2,7 @@ AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
 
-Style/AlignParameters:
+Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
 Style/ClassAndModuleChildren:
